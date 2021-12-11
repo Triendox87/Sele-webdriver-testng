@@ -127,16 +127,18 @@ public class RegisterUserGuru {
 		String dashboardText = driver.findElement(By.cssSelector("div[class='page-title'] h1")).getText();		
 		System.out.print("########dashboard########: " + dashboardText + '\n');
 
-		String fullnameText = driver.findElement(By.cssSelector("p[class='hello'] strong")).getText();
-		System.out.print("########fullname########: " + fullnameText + '\n');
+		String fullnameHello = driver.findElement(By.cssSelector("p[class='hello'] strong")).getText();
+		System.out.print("########fullname########: " + fullnameHello + '\n');		
 		
-		String fullname2 = driver.findElement(By.xpath("//div[@class='box-content']//p[contains(text(),'Trien Dang Do')]")).getText();
-		System.out.print("########fullname 2########: " + fullname2 + '\n');		
-		
+
+		String contactText = driver.findElement(By.xpath("//h3[text()='Contact Information']/parent::div/following-sibling::div")).getText();
+		System.out.print("########contactText########: " + contactText + '\n');	
+		Assert.assertTrue(contactText.contains(fullName));
+		Assert.assertTrue(contactText.contains(emailAddress));
 		
 		Assert.assertEquals(dashboardText, "MY DASHBOARD");
-		Assert.assertEquals(fullnameText,"Hello,"+" "+ firstname +" "+ middlename+" "+ lastname+"!");
-
+		Assert.assertEquals(fullnameHello,"Hello,"+" "+ firstname +" "+ middlename+" "+ lastname+"!");
+		
 	}
 	@AfterClass
 	public void afterClass() {
